@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TicketDbModelStoreContainer" CdmEntityContainer="TicketDbEntities">
+    <EntitySetMapping Name="LogEmail">
+      <EntityTypeMapping TypeName="TicketDbModel.LogEmail">
+        <MappingFragment StoreEntitySet="LogEmail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UidMail" ColumnName="UidMail" />
+          <ScalarProperty Name="DateMail" ColumnName="DateMail" />
+          <ScalarProperty Name="FromMail" ColumnName="FromMail" />
+          <ScalarProperty Name="SubjectMail" ColumnName="SubjectMail" />
+          <ScalarProperty Name="BodyMail" ColumnName="BodyMail" />
+          <ScalarProperty Name="NoAttachments" ColumnName="NoAttachments" />
+          <ScalarProperty Name="FIlesName" ColumnName="FIlesName" />
+          <ScalarProperty Name="IsLoad" ColumnName="IsLoad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="TicketDbModel.Tickets">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+          <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Impact" ColumnName="Impact" />
+          <ScalarProperty Name="CauseCode" ColumnName="CauseCode" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="TicketStatus" ColumnName="TicketStatus" />
+          <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+          <ScalarProperty Name="AssignUserID" ColumnName="AssignUserID" />
+          <ScalarProperty Name="ResponsibleGroupName" ColumnName="ResponsibleGroupName" />
+          <ScalarProperty Name="NotifyBy" ColumnName="NotifyBy" />
+          <ScalarProperty Name="ContactUserID" ColumnName="ContactUserID" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ResolveTime" ColumnName="ResolveTime" />
+          <ScalarProperty Name="ResolveUserID" ColumnName="ResolveUserID" />
+          <ScalarProperty Name="ResolutionCode" ColumnName="ResolutionCode" />
+          <ScalarProperty Name="ResolutionDesc" ColumnName="ResolutionDesc" />
+          <ScalarProperty Name="ResolveGroupName" ColumnName="ResolveGroupName" />
+          <ScalarProperty Name="VSLABreached" ColumnName="VSLABreached" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Subcustomer" ColumnName="Subcustomer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

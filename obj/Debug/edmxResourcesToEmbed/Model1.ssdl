@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TicketDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LogEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UidMail" Type="int" Nullable="false" />
+    <Property Name="DateMail" Type="datetime" />
+    <Property Name="FromMail" Type="varchar" MaxLength="250" />
+    <Property Name="SubjectMail" Type="varchar" MaxLength="250" />
+    <Property Name="BodyMail" Type="varchar(max)" />
+    <Property Name="NoAttachments" Type="int" />
+    <Property Name="FIlesName" Type="varchar" MaxLength="250" />
+    <Property Name="IsLoad" Type="bit" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IncidentID" Type="varchar" MaxLength="500" />
+    <Property Name="BriefDescription" Type="varchar(max)" />
+    <Property Name="Priority" Type="varchar" MaxLength="150" />
+    <Property Name="Impact" Type="varchar" MaxLength="150" />
+    <Property Name="CauseCode" Type="varchar" MaxLength="150" />
+    <Property Name="Category" Type="varchar" MaxLength="150" />
+    <Property Name="TicketStatus" Type="varchar" MaxLength="150" />
+    <Property Name="OpenTime" Type="varchar" MaxLength="150" />
+    <Property Name="AssignUserID" Type="varchar" MaxLength="150" />
+    <Property Name="ResponsibleGroupName" Type="varchar" MaxLength="150" />
+    <Property Name="NotifyBy" Type="varchar" MaxLength="150" />
+    <Property Name="ContactUserID" Type="varchar" MaxLength="150" />
+    <Property Name="ContactFirstName" Type="varchar" MaxLength="150" />
+    <Property Name="ContactLastName" Type="varchar" MaxLength="150" />
+    <Property Name="ContactEmail" Type="varchar" MaxLength="150" />
+    <Property Name="ResolveTime" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ResolveUserID" Type="varchar" MaxLength="150" />
+    <Property Name="ResolutionCode" Type="varchar" MaxLength="150" />
+    <Property Name="ResolutionDesc" Type="varchar(max)" />
+    <Property Name="ResolveGroupName" Type="varchar" MaxLength="150" />
+    <Property Name="VSLABreached" Type="varchar" MaxLength="150" />
+    <Property Name="Location" Type="varchar" MaxLength="550" />
+    <Property Name="Subcustomer" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityContainer Name="TicketDbModelStoreContainer">
+    <EntitySet Name="LogEmail" EntityType="Self.LogEmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

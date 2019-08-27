@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TicketDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LogEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UidMail" Type="Int32" Nullable="false" />
+    <Property Name="DateMail" Type="DateTime" Precision="3" />
+    <Property Name="FromMail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SubjectMail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="BodyMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NoAttachments" Type="Int32" />
+    <Property Name="FIlesName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsLoad" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IncidentID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Impact" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CauseCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="TicketStatus" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="OpenTime" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AssignUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ResponsibleGroupName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="NotifyBy" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ResolveTime" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ResolveUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ResolutionCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ResolutionDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ResolveGroupName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="VSLABreached" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Name="Subcustomer" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="TicketDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LogEmail" EntityType="Self.LogEmail" />
+    <EntitySet Name="Tickets" EntityType="Self.Tickets" />
+  </EntityContainer>
+</Schema>

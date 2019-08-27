@@ -1,0 +1,5 @@
+
+Log Entry (GetLastUid <<--Obtiene el ultimo uid del email registrado -->>) : 12:36:56 p. m. martes, 27 de agosto de 2019
+  :
+  :The cast to value type 'System.Int32' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
+-------------------------------
