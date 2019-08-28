@@ -24,9 +24,9 @@ namespace ReadMail
                 _smkInfo.UserName = info[2].ToString();
                 _smkInfo.Password = info[3].ToString();
                 _smkInfo.Subject = info[4].ToString();
-                _smkInfo.Path= info[5].ToString();
+                _smkInfo.Path = info[5].ToString();
 
-                if(!Directory.Exists(_smkInfo.Path+ "UnSeen"))
+                if (!Directory.Exists(_smkInfo.Path + "UnSeen"))
                     System.IO.Directory.CreateDirectory(_smkInfo.Path + "UnSeen");
                 if (!Directory.Exists(_smkInfo.Path + "Upload"))
                     System.IO.Directory.CreateDirectory(_smkInfo.Path + "Upload");
@@ -86,12 +86,14 @@ namespace ReadMail
                             }
                         }
                     }
+
+
+                    InsertData(tbl, uid, fileName);
+
                     //Se mueve el archivo
                     string destinationPath = item.Replace("UnSeen", "Upload");
                     System.IO.File.Move(item, destinationPath);
                     File.Delete(item);
-
-                    InsertData(tbl, uid, fileName);
                 }
             }
             catch (Exception ex)
@@ -135,14 +137,7 @@ namespace ReadMail
             try
             {
                 Console.WriteLine("Se almacena en BD la información del ticket ");
-                using (var context = new TicketDbEntities())
-                {
-                    context.Tickets.AddRange(emp);
-                    var logMail = context.LogEmail.FirstOrDefault(x => x.UidMail == uid);
-                    logMail.IsLoad = true;
-                    logMail.FIlesName += fileName + ", ";
-                    context.SaveChanges();
-                }
+                InsertOrUpdate(emp, uid, fileName);              
             }
             catch (Exception ex)
             {
@@ -174,7 +169,7 @@ namespace ReadMail
                         });
                     }
                     foreach (var item in messages)
-                    {                        
+                    {
                         var date = item.MailMessage.Date();
                         int totalAttachments = item.MailMessage.Attachments.Count;
 
@@ -194,8 +189,9 @@ namespace ReadMail
                         {
                             var stream = item.MailMessage.Attachments[i].ContentStream;
 
-                            var path = System.IO.Directory.GetCurrentDirectory();
-                            FileStream fileStream = File.Create(_smkInfo.Path + item.MailMessage.Attachments[i].Name, (int)stream.Length);
+                            // var path = System.IO.Directory.GetCurrentDirectory();
+                            var path = _smkInfo.Path + @"UnSeen\";
+                            FileStream fileStream = File.Create(path + item.MailMessage.Attachments[i].Name, (int)stream.Length);
                             // Initialize the bytes array with the stream length and then fill it with data
                             byte[] bytesInStream = new byte[stream.Length];
                             stream.Read(bytesInStream, 0, bytesInStream.Length);
@@ -270,6 +266,41 @@ namespace ReadMail
             {
                 _log.LogError(ex.Message, "GetLastUid <<--Obtiene el ultimo uid del email registrado -->>");
                 return 0;
+            }
+        }
+
+        private static void InsertOrUpdate(List<Tickets> tickets, uint uid, string fileName)
+        {
+            var ticketsId = tickets.Select(x => x.IncidentID);
+            
+            using (var context = new TicketDbEntities())
+            {
+                var existTickes = context.Tickets.Where(x => ticketsId.Contains(x.IncidentID));
+
+                if (existTickes.Any())
+                {
+                    foreach (var item in existTickes)
+                    {
+                        var ticket = tickets.FirstOrDefault(x => x.IncidentID == item.IncidentID);
+                        var ticketToUpdate = context.Tickets.FirstOrDefault(x => x.IncidentID == item.IncidentID);
+                        ticketToUpdate.ResolutionCode = ticket.ResolutionCode;
+                        ticketToUpdate.ResolutionDesc = ticket.ResolutionDesc;
+                        ticketToUpdate.ResolveUserID = ticket.ResolveUserID;
+                        ticketToUpdate.TicketStatus = ticket.TicketStatus;
+                        ticketToUpdate.ResolveTime = ticket.ResolveTime;
+                    }
+                    context.SaveChanges();
+                    tickets.RemoveAll(x => existTickes.Select(y => x.IncidentID).Contains(x.IncidentID));
+                }
+
+                if (tickets.Any())
+                {
+                    context.Tickets.AddRange(tickets);
+                    var logMail = context.LogEmail.FirstOrDefault(x => x.UidMail == uid);
+                    logMail.IsLoad = true;
+                    logMail.FIlesName += fileName + ", ";
+                    context.SaveChanges();
+                }
             }
         }
     }
