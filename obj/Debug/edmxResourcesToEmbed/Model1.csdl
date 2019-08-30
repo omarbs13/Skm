@@ -14,12 +14,17 @@
     <Property Name="FIlesName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="IsLoad" Type="Boolean" />
   </EntityType>
+  <EntityContainer Name="TicketDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LogEmail" EntityType="Self.LogEmail" />
+    <EntitySet Name="Tickets" EntityType="TicketDbModel.Tickets" />
+  </EntityContainer>
   <EntityType Name="Tickets">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IncidentID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Priority" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Impact" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -34,7 +39,7 @@
     <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ContactEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="ResolveTime" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ResolveTime" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ResolveUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ResolutionCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="ResolutionDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -43,8 +48,4 @@
     <Property Name="Location" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
     <Property Name="Subcustomer" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityContainer Name="TicketDbEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="LogEmail" EntityType="Self.LogEmail" />
-    <EntitySet Name="Tickets" EntityType="Self.Tickets" />
-  </EntityContainer>
 </Schema>

@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ReadMail.exe" size="36320">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ReadMail.exe" size="36832">
       <assemblyIdentity name="ReadMail" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WAR0QWjYhPK7Z4rI+Jbd5TkFWtguDmXjXWPtN8Otg2c=</dsig:DigestValue>
+        <dsig:DigestValue>D0WEnAeDy0YMCgQsEM6DyaSqajFTRFRtgoC56mJM1EM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

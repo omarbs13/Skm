@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9d56dc1f4be74842b2e1b7d82ff9d89f" Name="Diagram1">
         <EntityTypeShape EntityType="TicketDbModel.LogEmail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TicketDbModel.Tickets" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketDbModel.Tickets" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

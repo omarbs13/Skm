@@ -16,6 +16,7 @@ namespace ReadMail
     {
         public int Id { get; set; }
         public string IncidentID { get; set; }
+        public string Description { get; set; }
         public string BriefDescription { get; set; }
         public string Priority { get; set; }
         public string Impact { get; set; }

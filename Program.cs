@@ -109,6 +109,7 @@ namespace ReadMail
                        select new Tickets
                        {
                            AssignUserID = row["Assign User ID"].ToString(),
+                           Description = row["Description"].ToString(),
                            BriefDescription = row["Brief Description"].ToString(),
                            Category = row["Category"].ToString(),
                            CauseCode = row["Cause Code"].ToString(),

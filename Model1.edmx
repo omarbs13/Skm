@@ -25,6 +25,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IncidentID" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
           <Property Name="BriefDescription" Type="varchar(max)" />
           <Property Name="Priority" Type="varchar" MaxLength="150" />
           <Property Name="Impact" Type="varchar" MaxLength="150" />
@@ -70,12 +71,17 @@
           <Property Name="FIlesName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="IsLoad" Type="Boolean" />
         </EntityType>
+        <EntityContainer Name="TicketDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LogEmail" EntityType="Self.LogEmail" />
+          <EntitySet Name="Tickets" EntityType="TicketDbModel.Tickets" />
+        </EntityContainer>
         <EntityType Name="Tickets">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IncidentID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="BriefDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Priority" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Impact" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -90,7 +96,7 @@
           <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ContactEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ResolveTime" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ResolveTime" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ResolveUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ResolutionCode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="ResolutionDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -99,10 +105,6 @@
           <Property Name="Location" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
           <Property Name="Subcustomer" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="TicketDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="LogEmail" EntityType="Self.LogEmail" />
-          <EntitySet Name="Tickets" EntityType="Self.Tickets" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -127,30 +129,31 @@
           <EntitySetMapping Name="Tickets">
             <EntityTypeMapping TypeName="TicketDbModel.Tickets">
               <MappingFragment StoreEntitySet="Tickets">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
-                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
-                <ScalarProperty Name="Impact" ColumnName="Impact" />
-                <ScalarProperty Name="CauseCode" ColumnName="CauseCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="TicketStatus" ColumnName="TicketStatus" />
-                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
-                <ScalarProperty Name="AssignUserID" ColumnName="AssignUserID" />
-                <ScalarProperty Name="ResponsibleGroupName" ColumnName="ResponsibleGroupName" />
-                <ScalarProperty Name="NotifyBy" ColumnName="NotifyBy" />
-                <ScalarProperty Name="ContactUserID" ColumnName="ContactUserID" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ResolveTime" ColumnName="ResolveTime" />
-                <ScalarProperty Name="ResolveUserID" ColumnName="ResolveUserID" />
-                <ScalarProperty Name="ResolutionCode" ColumnName="ResolutionCode" />
-                <ScalarProperty Name="ResolutionDesc" ColumnName="ResolutionDesc" />
-                <ScalarProperty Name="ResolveGroupName" ColumnName="ResolveGroupName" />
-                <ScalarProperty Name="VSLABreached" ColumnName="VSLABreached" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Subcustomer" ColumnName="Subcustomer" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="VSLABreached" ColumnName="VSLABreached" />
+                <ScalarProperty Name="ResolveGroupName" ColumnName="ResolveGroupName" />
+                <ScalarProperty Name="ResolutionDesc" ColumnName="ResolutionDesc" />
+                <ScalarProperty Name="ResolutionCode" ColumnName="ResolutionCode" />
+                <ScalarProperty Name="ResolveUserID" ColumnName="ResolveUserID" />
+                <ScalarProperty Name="ResolveTime" ColumnName="ResolveTime" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactUserID" ColumnName="ContactUserID" />
+                <ScalarProperty Name="NotifyBy" ColumnName="NotifyBy" />
+                <ScalarProperty Name="ResponsibleGroupName" ColumnName="ResponsibleGroupName" />
+                <ScalarProperty Name="AssignUserID" ColumnName="AssignUserID" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="TicketStatus" ColumnName="TicketStatus" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CauseCode" ColumnName="CauseCode" />
+                <ScalarProperty Name="Impact" ColumnName="Impact" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="BriefDescription" ColumnName="BriefDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

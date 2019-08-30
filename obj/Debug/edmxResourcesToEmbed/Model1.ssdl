@@ -20,6 +20,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IncidentID" Type="varchar" MaxLength="500" />
+    <Property Name="Description" Type="varchar(max)" />
     <Property Name="BriefDescription" Type="varchar(max)" />
     <Property Name="Priority" Type="varchar" MaxLength="150" />
     <Property Name="Impact" Type="varchar" MaxLength="150" />
